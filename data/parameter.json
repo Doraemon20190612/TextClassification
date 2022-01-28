@@ -1,0 +1,441 @@
+{
+    "Public": {
+        "random_state": 888,
+        "n_jobs": 4
+    },
+    "Augment": {
+        "aug_simword": {
+            "create_num": 3,
+            "change_rate": 0.3,
+            "label_list": [0,1]
+        },
+        "aug_nerword": {
+            "create_num": 3,
+            "change_rate": 0.3,
+            "label_list": [0,1]
+        },
+        "aug_simchar": {
+            "create_num": 3,
+            "change_rate": 0.3,
+            "label_list": [0,1]
+        },
+        "aug_delechar": {
+            "create_num": 3,
+            "change_rate": 0.3,
+            "label_list": [0,1]
+        },
+        "aug_exchangechar": {
+            "create_num": 3,
+            "change_rate": 0.3,
+            "char_gram": 3,
+            "label_list": [0,1]
+        },
+        "aug_equchar": {
+            "create_num": 3,
+            "change_rate": 0.3,
+            "label_list": [0,1]
+        },
+        "aug_backtrans": {
+            "trans_list": ["en"],
+            "appid": "20200911000563804",
+            "secretKey": "E6dg4qfnjzzkAVQZF_rp",
+            "label_list": [0,1]
+        }
+    },
+    "TextPreprocess": {
+        "char_converter": {
+            "config": "t2s"
+        },
+        "segment": { 
+            "jieba_cut": {
+                "HMM": true, 
+                "cut_all": false,
+                "use_paddle": false
+            },
+            "thulac_cut": {
+                "seg_only": true,
+                "text": true
+            },
+            "pkuseg_cut": {
+                "model_name": "default", 
+                "user_dict": "default",
+                "postag": false 
+            },
+            "lac_cut": {
+                "mdoe": "seg" 
+            },
+            "ltp_cut": {
+                "model": "tiny" 
+            },
+            "snow_cut": null 
+        },
+        "number_filter": { 
+            "method": "int" 
+        },
+        "word_ngrams": { 
+            "ngram_range": [1,2]
+        },
+        "tokenizer": {
+            "bert_tokenizer": {
+                "model_path": "/Users/niejikai/Desktop/程序/语料库/预训练模型/bert-base-chinese"
+            }
+        }
+    },
+    "ExtractKeyword": { 
+        "jieba_tfidf": {
+            "topK": 5,
+            "withWeight": false
+        },
+        "define_tfidf": {
+            "topK": 5,
+            "withWeight": false 
+        },
+        "jieba_textrank": {
+            "topK": 5,
+            "withWeight": false
+        }
+    },
+    "TextVector": { 
+        "traditional": { 
+            "one_hot": {
+                "max_length": 1000
+            },
+            "one_hot_keras": {
+                "padding": "post" 
+            },
+            "one_hot_keras_rl": {
+                "padding": "post"
+            },
+            "count_vector": {
+                "min_df": 10,
+                "ngram_range": [1,2]
+            },
+            "hash_vector": {
+                "n_features": 100,
+                "ngram_range": [1,2],
+                "norm": "l2" 
+            },
+            "tfidf_vector": {
+                "min_df": 2,
+                "max_df": 0.96,
+                "max_features": 20000,
+                "ngram_range": [1,1],
+                "use_idf": true, 
+                "smooth_idf": true, 
+                "norm": "l2",
+                "strip_accents": "unicode"
+            }
+        },
+        "word_embedding": { 
+            "word2vector": {
+                "sg": 1,
+                "window": 5,
+                "alpha": 0.025,
+                "size": 100,
+                "min_count": 2,
+                "iter": 500,
+                "epochs": 10
+            },
+            "glove": {
+                "n": 100, 
+                "co_window": 3, 
+                "min_count": 5, 
+                "max_iter": 1, 
+                "display_progress": 1
+            },
+            "tencent_w2v": {
+                "model_path": "/Users/niejikai/Desktop/程序/语料库/预训练模型/Tencent_AILab_ChineseEmbedding/Tencent_AILab_ChineseEmbedding.magnitude"
+            },
+            "co_occurrence": {
+                "size": 100,
+                "min_count": 10
+            },
+            "lsa_vec": {
+                "size": 100,
+                "min_count": 10
+            }
+        },
+        "word_embedding_process": { 
+            "wordvec_tfidf_avg": {
+                "min_df": 1,
+                "ngram_range": [1,2],
+                "norm": "l1" 
+            },
+            "wordvec_index": {
+                "padding": "post" 
+            }
+        },
+        "sentence_embedding": {
+            "doc2vector":{
+                "vector_size": 100,
+                "window": 20,
+                "min_count": 1,
+                "iter_": 500
+            }
+        }
+    },
+    "FeatureDimensionReduce": {
+        "filters": {
+            "variance_filter": {
+                "size": 100
+            }
+        },
+        "linear_decomposition": {
+            "pca": {
+                "n_components": 50,
+                "svd_solver": "auto"
+            },
+            "increment_pca": {
+                "n_components": 50,
+                "batch_size": 1024
+            },
+            "kernel_pca": {
+                "n_components": 50,
+                "kernel": "linear" 
+            },
+            "sparse_pca": {
+                "n_components": 50
+            },
+            "minibatch_pca": {
+                "n_components": 50,
+                "batch_size": 50
+            },
+            "factor_analysis": {
+                "n_components": 50
+            },
+            "svd": {
+                "k": 50
+            },
+            "truncated_svd": {
+                "n_components": 50,
+                "n_iter": 5
+            },
+            "lda": {
+                "n_components": 10,
+                "learning_method": "online",
+                "learning_offset": 10.0
+            },
+            "fast_ica": {
+                "n_components": 50
+            },
+            "nmf": {
+                "n_components": 50,
+                "init": "random" 
+            }
+        },
+        "manifold_learning": {
+            "isomap": {
+                "n_neighbors": 5,
+                "n_components": 50,
+                "neighbors_algorithm": "auto" 
+            },
+            "mds": {
+                "n_components": 50
+                
+            },
+            "t_sne": {
+                "n_components": 3 
+            },
+            "lle": {
+                "n_components": 50,
+                "n_neighbors": 12
+            }
+        }
+    },
+    "FeatureCode": { 
+        "stand_scaler": {
+            "with_mean": true,
+            "with_std": true 
+        },
+        "randomtrees_embedding": {
+            "n_estimators": 5
+        }
+    },
+    "ModelPreparation": { 
+        "split_train_test": {
+            "is_original_data": 0,
+            "test_size": 0.2,
+            "valid_size": 0.25
+        },
+        "noisy_clean": {
+            "edite_nearest_neighbours": {
+                    "n_neighbors": 3,
+                    "kind_sel": "all"
+                },
+            "all_knn": {
+                "n_neighbors": 3,
+                "kind_sel": "all"
+            },
+            "onesided_selection": {
+                "n_neighbors": null,
+                "n_seed_S": 1
+            },
+            "neighbourhood_cleaningrule": {
+                "n_neighbors": 3,
+                "kind_sel": "all",
+                "threshold_cleaning": 0.5
+            }
+        },
+        "data_sample": {
+            "over_sample": {
+                "random_over_sampling": {
+                    "shrinkage": 0.2
+                },
+                "smote": {
+                    "k_neighbors": 5
+                },
+                "borderline_smote": {
+                    "k_neighbors": 5,
+                    "m_neighbors": 10
+                },
+                "smotenc": {
+                    "k_neighbors": 5
+                },
+                "svm_smote": {
+                    "k_neighbors": 5
+                },
+                "kmeans_smote": {
+                    "k_neighbors": 5,
+                    "m_neighbors": 10
+                },
+                "adasyn": {
+                    "k_neighbors": 5
+                }
+            },
+            "under_sample": {
+                "near_miss": {
+                    "version": 1,
+                    "n_neighbors": 3,
+                    "n_neighbors_ver3": 3
+                }
+            },
+            "over_under_sample": null 
+        },
+        "tokenizer_loader": null 
+    },
+    "Classifier": { 
+        "dummy": {
+            "strategy": "constant", 
+            "constant": 4
+        },
+        "machine_learning": { 
+            "knn": {
+                "knn_kd": {
+                    "n_neighbors": 10,
+                    "metric": "euclidean", 
+                    "p": 2
+                },
+                "knn_radius": {
+                    "radius": 50.0
+                }
+            },
+            
+            "naive_bayes": {
+                "complement_nb": {
+                    "alpha": 1.2
+                },
+                "bernoulli_nb": {
+                    "alpha": 0.8
+                },
+                "multinomial_nb": {
+                    "alpha": 0.5
+                }
+            },
+            "discriminant": {
+                "linear_discriminant": {
+                    "solver" :"svd" 
+                },
+                "quadratic_discriminant": null
+            },
+            "linear": {
+                "logistic_regression": {
+                    "penalty" :"l2", 
+                    "max_iter" :10000
+                },
+                "ridge": null,
+                "sgd": null 
+            },
+            "tree": {
+                "decision_tree": null,
+                "extra_tree": null
+            },
+            "svm": {
+                "c_svm": {
+                    "C": 1.0,
+                    "gamma": 0.01,
+                    "kernel": "rbf" 
+                },
+                "nu_svm": {
+                    "nu": 0.5,
+                    "kernel": "rbf"
+                },
+                "linear_svm": {
+                    "C": 1.0
+                }
+            },
+            "gaussian_process": null 
+        },
+        "ensemble_learning": {
+            "ada_boost": {
+                "n_estimators": 100
+            },
+            "extra_trees": {
+                "n_estimators": 100
+            },
+            "gbdt": {
+                "n_estimators": 100,
+                "learning_rate": 1.0,
+                "max_depth": 1
+            },
+            "random_forest": {
+                "n_estimators": 100,
+                "max_depth": 1
+            },
+            "hist_gbdt": null,
+            "xgboost": {
+                "n_estimators": 300,
+                "max_depth": 5,
+                "learning_rate": 0.1
+            },
+            "light_gbm": {
+                "n_estimators": 300,
+                "max_depth": 10,
+                "learning_rate": 0.1
+            },
+            "cat_boost": {
+                "eval_metric": "AUC",
+                "one_hot_max_size": 31,
+                "depth": 4,
+                "iterations": 500,
+                "l2_leaf_reg": 9,
+                "learning_rate": 0.15
+            }
+        },
+        "deep_learning": {
+            "public": {
+                "batch_size": 32,
+                "epochs": 10
+            },
+            "swem": {
+                "pooling_type": "hierarchical",
+                "kernel_size": 3
+            },
+            "text_dcnn": {
+                "filters_list": [[2, 3, 4], [3, 4, 5]]
+            },
+            "text_vdcnn": {
+                "init_filters": 64,
+                "blocks": [2, 2, 2, 2]
+            }
+        },
+        "transfer_learning":{
+            "public": {
+                "batch_size": 32,
+                "epochs": 10
+            },
+            "bert": {
+                "model_path": "/Users/niejikai/Desktop/程序/语料库/预训练模型/bert-base-chinese/"
+            }
+        } 
+    }
+}
