@@ -37,8 +37,8 @@
         },
         "aug_backtrans": {
             "trans_list": ["en"],
-            "appid": "20200911000563804",
-            "secretKey": "E6dg4qfnjzzkAVQZF_rp",
+            "appid": "",
+            "secretKey": "",
             "label_list": [0,1]
         }
     },
@@ -77,7 +77,7 @@
         },
         "tokenizer": {
             "bert_tokenizer": {
-                "model_path": "/Users/niejikai/Desktop/程序/语料库/预训练模型/bert-base-chinese"
+                "model_path": "./bert-base-chinese"
             }
         }
     },
@@ -144,7 +144,7 @@
                 "display_progress": 1
             },
             "tencent_w2v": {
-                "model_path": "/Users/niejikai/Desktop/程序/语料库/预训练模型/Tencent_AILab_ChineseEmbedding/Tencent_AILab_ChineseEmbedding.magnitude"
+                "model_path": "./Tencent_AILab_ChineseEmbedding.magnitude"
             },
             "co_occurrence": {
                 "size": 100,
@@ -434,7 +434,7 @@
                 "epochs": 10
             },
             "bert": {
-                "model_path": "/Users/niejikai/Desktop/程序/语料库/预训练模型/bert-base-chinese/"
+                "model_path": "./bert-base-chinese/"
             }
         } 
     }

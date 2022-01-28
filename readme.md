@@ -21,15 +21,31 @@ graph LR
 	B6 --> B2
 ```
 
-关于数据处理部分，大家可以参考.ipynb文件。
+关于数据处理部分，大家可以参考test.ipynb文件。
 
 关于函数的pipeline工作顺序，如下：
 
-![Pipeline](/Users/niejikai/Desktop/程序/Pycharm/textclassification2/Pipeline.png)
-
-
+![image](https://github.com/Doraemon20190612/Text-Classification/blob/master/Pipeline.png)
 
 ## 函数
+
+在使用以下函数时的注意点：
+
+1、Augment.cda.backtrans：需要去百度翻译http://api.fanyi.baidu.com/api/trans/product/index申请app_id和token
+
+2、TextVector.word_embedding.tencent_w2v：需要去腾讯AI实验室下载预训练词向量https://ai.tencent.com/ailab/nlp/en/download.html
+
+然后采用命令行将其转化为magnitude（https://github.com/plasticityai/magnitude）格式的懒加载文件
+
+```bash
+!python -m pymagnitude.converter -i Tencent_AILab_ChineseEmbedding.bin -o Tencent_AILab_ChineseEmbedding.magnitude
+```
+
+3、TextVector.sentence_embedding.bert_cls：需要下载预训练模型（可以去huggingface），这里提供一个bert-base-chinese百度云盘的链接如下：
+
+链接: https://pan.baidu.com/s/1uR4FMASDWSS73vY1mavsDQ  密码: 9bev
+
+4、Classifier.transfer_learning.train.bert_finetuning：见第三条
 
 | 函数类目               | 函数                                                 | 编号    |
 | ---------------------- | ---------------------------------------------------- | ------- |
@@ -467,8 +483,6 @@ ModelPreparation.dataset_partition.split_train_test
 Classifier.deep_learning.train.text_vdcnn
 ```
 
-
-
 ## Bert embedding+DNN
 
 ```python
@@ -493,7 +507,5 @@ ModelPreparation.tokenizer_loader.bert_loader
 Classifier.transfer_learning.train.bert_finefuning
 ```
 
-
-
-
+欢迎关注知乎账号：Doraemon https://www.zhihu.com/people/f0781fa5c150f914c0f0ec11bedcc16e
 
