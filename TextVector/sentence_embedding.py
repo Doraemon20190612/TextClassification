@@ -5,6 +5,7 @@ from tqdm import tqdm, trange
 import math
 import gc
 import time
+import os
 import logging
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
@@ -55,10 +56,10 @@ def bert_cls(input_):
     ###########################################
 
     tokenizer = transformers.BertTokenizer.from_pretrained(
-        parameter['Classifier']['transfer_learning']['bert']['model_path']
+        os.path.abspath(os.path.join(os.getcwd(), "..")) + parameter['Classifier']['transfer_learning']['bert']['model_path']
     )
     bert_model = transformers.TFBertModel.from_pretrained(
-        parameter['Classifier']['transfer_learning']['bert']['model_path']
+        os.path.abspath(os.path.join(os.getcwd(), "..")) + parameter['Classifier']['transfer_learning']['bert']['model_path']
     )
 
     data_feature_total_list = [i for i in tqdm(data_feature_total)]

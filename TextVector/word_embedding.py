@@ -1,5 +1,6 @@
 from tqdm import tqdm
 import collections
+import os
 from pymagnitude import *
 from sklearn.feature_extraction.text import CountVectorizer
 from scipy import sparse
@@ -135,7 +136,7 @@ def tencent_w2v(input_):
 
     word_embedding = Wordembedding()
     wordvec_model = word_embedding.tencent_model(text_part_ll_total,
-                                                 model_path=parameter['TextVector']['word_embedding']['tencent_w2v'][
+                                                 model_path=os.path.abspath(os.path.join(os.getcwd(), "..")) + parameter['TextVector']['word_embedding']['tencent_w2v'][
                                                      'model_path'])
 
     ###########################################

@@ -77,7 +77,7 @@
         },
         "tokenizer": {
             "bert_tokenizer": {
-                "model_path": "./bert-base-chinese"
+                "model_path": "/data/bert-base-chinese"
             }
         }
     },
@@ -144,7 +144,7 @@
                 "display_progress": 1
             },
             "tencent_w2v": {
-                "model_path": "./Tencent_AILab_ChineseEmbedding.magnitude"
+                "model_path": "/data/Tencent_AILab_ChineseEmbedding.magnitude"
             },
             "co_occurrence": {
                 "size": 100,
@@ -434,7 +434,7 @@
                 "epochs": 10
             },
             "bert": {
-                "model_path": "./bert-base-chinese/"
+                "model_path": "/data/bert-base-chinese/"
             }
         } 
     }

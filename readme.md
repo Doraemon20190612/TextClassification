@@ -31,11 +31,13 @@ graph LR
 
 在使用以下函数时的注意点：
 
-1、Augment.cda.backtrans：需要去百度翻译http://api.fanyi.baidu.com/api/trans/product/index申请app_id和token
+1、Augment.cda.backtrans：需要去百度翻译http://api.fanyi.baidu.com/api/trans/product/index申请app_id和token，申请完毕在/data/parameter.json中填写即可。
 
 2、TextVector.word_embedding.tencent_w2v：需要去腾讯AI实验室下载预训练词向量https://ai.tencent.com/ailab/nlp/en/download.html
 
 然后采用命令行将其转化为magnitude（https://github.com/plasticityai/magnitude）格式的懒加载文件
+
+转换完毕放在/data/ 文件夹下即可
 
 ```bash
 !python -m pymagnitude.converter -i Tencent_AILab_ChineseEmbedding.bin -o Tencent_AILab_ChineseEmbedding.magnitude
@@ -44,6 +46,8 @@ graph LR
 3、TextVector.sentence_embedding.bert_cls：需要下载预训练模型（可以去huggingface），这里提供一个bert-base-chinese百度云盘的链接如下：
 
 链接: https://pan.baidu.com/s/1uR4FMASDWSS73vY1mavsDQ  密码: 9bev
+
+下载完毕放在/data/ 文件夹下即可
 
 4、Classifier.transfer_learning.train.bert_finetuning：见第三条
 

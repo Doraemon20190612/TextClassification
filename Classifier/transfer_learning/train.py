@@ -1,6 +1,7 @@
 from .model.bert import BertFineTuning
 import tensorflow as tf
 import transformers
+import os
 
 
 def bert_finetuning(input_):
@@ -10,10 +11,10 @@ def bert_finetuning(input_):
     parameter = input_['parameter']
     ###########################################
     clf_config = transformers.BertConfig.from_pretrained(
-        parameter['Classifier']['transfer_learning']['bert']['model_path']
+        os.path.abspath(os.path.join(os.getcwd(), "..")) + parameter['Classifier']['transfer_learning']['bert']['model_path']
     )
     clf_model = BertFineTuning.from_pretrained(
-        parameter['Classifier']['transfer_learning']['bert']['model_path'],
+        os.path.abspath(os.path.join(os.getcwd(), "..")) + parameter['Classifier']['transfer_learning']['bert']['model_path'],
         config=clf_config,
         num_labels=len(set(label_array))
     )
